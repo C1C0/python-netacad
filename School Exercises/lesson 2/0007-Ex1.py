@@ -12,9 +12,15 @@ print("y =", y)
 
 # 2
 num = int(input("Enter a number: "))
-
 modulus = num % 2
+
 if modulus > 0:
     print("You picked an odd number")
 else:
     print("You picked an even number")
+
+# 3
+name = input("What is your name: ")
+age = int(input("How old are you: "))
+
+print(name + ":", age)
