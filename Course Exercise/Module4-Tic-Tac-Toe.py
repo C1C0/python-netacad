@@ -142,18 +142,87 @@ def make_list_of_free_fields(width):
 
 
 
-# def victory_for(board, sign):
-#     # The function analyzes the board's status in order to check if 
-#     # the player using 'O's or 'X's has won the game
+def victory_for(board, width, sign):
+    """
+    The function analyzes the board's status in order to check if 
+    the player using 'O's or 'X's has won the game
+    """
+
+    cross1 = cross2 = True
+
+    for row in range(width):
+        # check row
+        if board[row][0] == sign and board[row][1] == sign and board[row][2] == sign:
+            return True
+
+        # check column
+        if board[0][row] == sign and board[1][row] == sign and board[2][row] == sign:
+            return True
+
+        # check diagonal from 1 to 9
+        if board[row][row] != sign:
+            cross1 = False
+
+        # check diagonal from 3 to 7
+        if board[2 - row][2 - row] != sign:
+            cross2 = False
+
+    print("Crosses:", cross1 or cross2)
+
+    return cross1 or cross2    
 
 
-# def draw_move(board):
-#     # The function draws the computer's move and updates the board.
+def draw_move(board, width, fieldsList):
+    """
+    The function draws the computer's move and updates the board.
+    """
+
+    maxValue = width * width
+    computerMove = randrange(maxValue)
+
+    row, i = fieldsList[computerMove]
+
+    computerMove -= 1
+
+    # check if not taken
+    if type(board[row][i]) != int:
+        return False
+
+    board[row][i] = "X"
+
+    return True
+
 
 fieldsList = make_list_of_free_fields(boardWidth)
-
+winner = ""
+numberOfMoves = 0
 while True:
+    if numberOfMoves > boardWidth * boardWidth:
+        break
+
+    # Computer Move
+    while not draw_move(board, boardWidth, fieldsList):
+        print(end="")
+    
+    if victory_for(board, boardWidth, computerSymbol):
+        winner = "Computer"
+        break
+
+    # display
     display_board(board, boardWidth)
 
+    # Players move
     while not enter_move(board, boardWidth, fieldsList):
         print()
+
+    if victory_for(board, boardWidth, userSymbol):
+        winner = "Player"
+        break
+
+    numberOfMoves += 2
+
+display_board(board, boardWidth)
+if winner == "":
+    print("Tie")
+else:
+    print("The winner is", winner)
