@@ -1,22 +1,111 @@
-def display_board(board):
-    # The function accepts one parameter containing the board's current status
-    # and prints it out to the console.
+from random import randrange
+
+# we expect: Width == height
+board = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+try:
+    # get width and height and check them, as they should be similar
+    boardWidth = len(board)
+    boardHeight = len(board[0])
+except IndexError:
+    print("Board has nothing inside, exiting program...")
+    exit()
+except:
+    print("Unrecognized error occured.")
+    exit()
 
 
-def enter_move(board):
-    # The function accepts the board's current status, asks the user about their move, 
-    # checks the input, and updates the board according to the user's decision.
+# dimesions should be similar
+if boardWidth != boardHeight:
+    print("Board has different dimensions, exiting program...")
+    exit()
 
 
-def make_list_of_free_fields(board):
-    # The function browses the board and builds a list of all the free squares; 
-    # the list consists of tuples, while each tuple is a pair of row and column numbers.
+def boardDivider(width):
+    """
+        if length 3 - then:\n
+        +-------+-------+-------+
+    """
+
+    boardPart = ""
+    for i in range(width):
+        boardPart += "+-------"
+
+        if i == width - 1:
+            boardPart += "+"
+
+    return boardPart
+
+def boardNoCharSpace(width):
+    """
+        if length 3 - then:\n
+        |sssssss|sssssss|sssssss|
+    """
+
+    boardPart = ""
+    for i in range(width):
+        boardPart += "|       "
+
+        if i == width - 1:
+            boardPart += "|"
+
+    return boardPart
+
+def boardCharSpace(row):
+    """
+        if length 3 - then:\n
+        |sss1sss|sss2sss|sss3sss| 
+    """
+
+    boardPart = ""
+    for i in range(len(row)):
+        boardPart += "|   {}   ".format(row[i])
+
+        if i == len(row) - 1:
+            boardPart += "|"
+
+    return boardPart
+
+def display_board(board, width):
+    '''
+        board - board with same dimmension - basically two dimensionall list \n
+        width - checked with of the board \n
+        height - checked height of the board \n
+    '''
+
+    for row in board:
+        print(boardDivider(width))
+        print(boardNoCharSpace(width))
+        print(boardCharSpace(row))
+        print(boardNoCharSpace(width))
+
+        # get last board divider - as border
+        if board.index(row) == width - 1:
+                print(boardDivider(width))
 
 
-def victory_for(board, sign):
-    # The function analyzes the board's status in order to check if 
-    # the player using 'O's or 'X's has won the game
+
+# def enter_move(board):
+#     # The function accepts the board's current status, asks the user about their move, 
+#     # checks the input, and updates the board according to the user's decision.
 
 
-def draw_move(board):
-    # The function draws the computer's move and updates the board.
+# def make_list_of_free_fields(board):
+#     # The function browses the board and builds a list of all the free squares; 
+#     # the list consists of tuples, while each tuple is a pair of row and column numbers.
+
+
+# def victory_for(board, sign):
+#     # The function analyzes the board's status in order to check if 
+#     # the player using 'O's or 'X's has won the game
+
+
+# def draw_move(board):
+#     # The function draws the computer's move and updates the board.
+
+
+display_board(board, boardWidth)
