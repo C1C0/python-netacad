@@ -1,11 +1,11 @@
 from random import randrange
 
 # we expect: Width == height
-board = [
+board = (
     [1, 2, 3],
     [4, 5, 6],
     [7, 8, 9]
-]
+)
 
 try:
     # get width and height and check them, as they should be similar
@@ -89,9 +89,29 @@ def display_board(board, width):
 
 
 
-# def enter_move(board):
-#     # The function accepts the board's current status, asks the user about their move, 
-#     # checks the input, and updates the board according to the user's decision.
+def enter_move(board, width, height):
+    """
+        Board - actual board status
+        width - width of board
+        height - height of board
+    """
+
+    maxValue = width * height
+
+    try:
+        nextMove = int(input("Please, enter your next move (number from: {} - {})".format(board[0][0], maxValue)))
+
+        # If out of range
+        if nextMove < 0 or nextMove > maxValue:
+            print("You provided wrong value, please, try again.")
+            return False
+
+        
+
+        return nextMove
+    except ValueError:
+        print("You provided wrong value, please, try again.")
+        return False
 
 
 # def make_list_of_free_fields(board):
@@ -109,3 +129,6 @@ def display_board(board, width):
 
 
 display_board(board, boardWidth)
+
+while not enter_move(board, boardWidth, boardHeight):
+    print()
