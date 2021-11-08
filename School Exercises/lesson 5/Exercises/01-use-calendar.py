@@ -1,10 +1,12 @@
 import calendar as c
 
+ourCal = c.Calendar()
+
 def allDays(y, m):
     """
     From: https://stackoverflow.com/a/56416995
     """
-    return ['{:04d}-{:02d}-{:02d}'.format(y, m, d) for d in range(1, c.monthrange(y, m)[1] + 1)]
+    return ["{}".format(d) for d in ourCal.itermonthdates(y, m)]
 
 def stringAllDates(y, m):
     dates = ""
