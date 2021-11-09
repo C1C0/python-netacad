@@ -1,9 +1,6 @@
-my_lists =  ['Mary', 'had', 'a', 'little', 'lamb']
+my_list = [1, 2]
 
+for v in range(2):
+    my_list.insert(-1, my_list[v])
 
-def my_list(my_list):
-    del my_list[3]
-    my_list[3] = 'ram'
-
-
-print(my_list(my_lists))
+print(my_list)
