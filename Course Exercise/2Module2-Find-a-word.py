@@ -1,18 +1,16 @@
-def checkIfIncludesWord(word: dict, sequence: str)->bool:
-    """
-    Check if sequence of letters includes also sub-sequence
-    of letters from word in the same order 
-    """
-    wordIndex = 0
-    wordLength = len(word)
+word = input("Enter the word you wish to find: ").upper()
+strn = input("Enter the string you wish to search through: ").upper()
 
-    for char in sequence:
-        if wordIndex == wordLength:
-            return True
+found = True
+start = 0
 
-        if char == word[wordIndex]:
-            wordIndex += 1
-
-    return wordIndex == wordLength
-
-print("Yes" if checkIfIncludesWord(input(), input()) else "No") 
+for ch in word:
+	pos = strn.find(ch, start) 
+	if pos < 0:
+		found = False
+		break
+	start = pos + 1
+if found:
+	print("Yes")
+else:
+	print("No")
