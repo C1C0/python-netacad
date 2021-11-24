@@ -1,2 +1,2 @@
-
-          finalNumber += segments[int(x)][beginSubstr:endSubstr].rep
+    weekday.add_days(15)
+    print(weekday)
