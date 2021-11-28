@@ -41,13 +41,28 @@ class Point:
 
 class Triangle:
 
+    def __init__(self, point1: Point, point2: Point, point3: Point, ) -> None:
+        self.__points: list[Point] = [point1, point2, point3]
 
-    def perimeter(self):
-        pass
-        #
-        # Write code here
-        #
+    def perimeter(self) -> float:
+        """Calculates perimeter of the triangle
 
-
+        Returns:
+            float: triangles perimeter
+        """
+        
+        perimeter = 0
+        
+        for index, p  in enumerate(self.__points):
+            new_index = index + 1
+            
+            # check the index
+            if new_index >= len(self.__points):
+                new_index = 0
+         
+            perimeter += p.distance_from_point(self.__points[new_index])
+        
+        return perimeter
+        
 triangle = Triangle(Point(0, 0), Point(1, 0), Point(0, 1))
 print(triangle.perimeter())
