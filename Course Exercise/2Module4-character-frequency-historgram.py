@@ -41,7 +41,9 @@ def histogram(file : TextIOWrapper, close:bool = False) -> dict:
     
     # go through each character
     for char in file.read():
-        if char in notCountedChars:
+        char = char.lower()
+        
+        if char in notCountedChars or not char.isalpha():
             continue
         
         if char in histogramCount.keys():
