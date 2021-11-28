@@ -1,9 +1,3 @@
-class A:
-    def __init__(self):
-        self.a = 1
+dict1 = {1: "ahoj", 2: 34, "tupple": (1, 2, 3), ('ahoj', 3): ['ahoj', 'idem', 5], ('ahoj', 4): ['ahoj', 'idem', 6]}
 
-
-class B(A):
-    def __init__(self):
-        A.__init__(self)
-        self.b = 2
+print(dict1[('ahoj', 4)])
