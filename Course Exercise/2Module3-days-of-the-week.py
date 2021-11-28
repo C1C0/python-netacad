@@ -1,70 +1,69 @@
 """
-Scenario
-Your task is to implement a class called Weeker. Yes, your eyes don't deceive you - 
-this name comes from the fact that objects of that class will be able to store and to manipulate days of a week.
+Let's visit a very special place - a plane with the Cartesian coordinate system 
+(you can learn more about this concept here: https://en.wikipedia.org/wiki/Cartesian_coordinate_system).
 
-The class constructor accepts one argument - a string. 
-The string represents the name of the day of the week and the only acceptable values must come from the following set:
+Each point located on the plane can be described as a pair of coordinates customarily called x and y. 
+We expect that you are able to write a Python class which stores both coordinates as float numbers. 
+Moreover, we want the objects of this class to evaluate the distances between any of the two points situated on the plane.
 
-Mon Tue Wed Thu Fri Sat Sun
+The task is rather easy if you employ the function named hypot() (available through the math module) 
+which evaluates the length of the hypotenuse of a right triangle (more details here: https://en.wikipedia.org/wiki/Hypotenuse) 
+and here: https://docs.python.org/3.7/library/math.html#trigonometric-functions.
 
-Invoking the constructor with an argument from outside this set should raise the WeekDayError exception 
-(define it yourself; don't worry, we'll talk about the objective nature of exceptions soon). The class should provide the following facilities:
+This is how we imagine the class:
 
-objects of the class should be "printable", i.e. they should be able to implicitly convert themselves into strings of the same form as the constructor arguments;
-the class should be equipped with one-parameter methods called add_days(n) and subtract_days(n), 
-with n being an integer number and updating the day of week stored inside the object in the way reflecting the change of date by the indicated number of days, forward or backward.
-all object's properties should be private;
+it's called Point;
+its constructor accepts two arguments (x and y respectively), both default to zero;
+all the properties should be private;
+the class contains two parameterless methods called getx() and gety(), which return each of the two coordinates 
+(the coordinates are stored privately, so they cannot be accessed directly from within the object);
+the class provides a method called distance_from_xy(x,y), which calculates and returns the distance 
+between the point stored inside the object and the other point given as a pair of floats;
+the class provides a method called distance_from_point(point), which calculates the distance (like the previous method),
+but the other point's location is given as another Point class object;
 Complete the template we've provided in the editor and run your code and check whether your output looks the same as ours.
 
 Expected output
-Mon
-Thu
-Sun
-Sorry, I can't serve your request.
+1.4142135623730951
+1.4142135623730951
 """
 
-class WeekDayError(Exception):
-    pass
-	
+import math
 
-class Weeker:
-    #
-    # Write code here
-    #
 
-    def __init__(self, day):
+class Point:
+    def __init__(self, x=0.0, y=0.0):
         pass
         #
         # Write code here
         #
 
-    def __str__(self):
+    def getx(self):
         pass
         #
         # Write code here
         #
 
-    def add_days(self, n):
+    def gety(self):
         pass
         #
         # Write code here
         #
 
-    def subtract_days(self, n):
+    def distance_from_xy(self, x, y):
+        pass
+        #
+        # Write code here
+        #
+
+    def distance_from_point(self, point):
         pass
         #
         # Write code here
         #
 
 
-try:
-    weekday = Weeker('Mon')
-    print(weekday)
-    weekday.add_days(15)
-    print(weekday)
-    weekday.subtract_days(23)
-    print(weekday)
-    weekday = Weeker('Monday')
-except WeekDayError:
-    print("Sorry, I can't serve your request.")
+point1 = Point(0, 0)
+point2 = Point(1, 1)
+print(point1.distance_from_point(point2))
+print(point2.distance_from_xy(2, 0))
