@@ -31,36 +31,22 @@ Expected output
 import math
 
 class Point:
-    def __init__(self, x:float=0.0, y:float=0.0):
-        self.__x : float = x
-        self.__y : float = y
+    def __init__(self, x=0.0, y=0.0):
+        self.__x = x
+        self.__y = y
 
-    def getx(self) -> float:
+    def getx(self):
         return self.__x
 
-    def gety(self) -> float:
+    def gety(self):
         return self.__y
 
-    def distance_from_xy(self, x:float, y:float) -> float:
-        """
-        Args:
-            x (float)
-            y (float)
-
-        Returns:
-            float: Returns float distance of two points 
-        """
-        return math.hypot(math.fabs(self.__x - x), math.fabs(self.__y - y))
+    def distance_from_xy(self, x, y):
+        return math.hypot(abs(self.__x - x), abs(self.__y - y))
 
     def distance_from_point(self, point):
-        """
-        Args:
-            point (Point)
-            
-        Returns:
-            float: Returns float distance of two points 
-        """
-        return math.hypot(math.fabs(self.__x - point.getx()), math.fabs(self.__y - point.gety()))
+        return self.distance_from_xy(point.getx(), point.gety())
+
 
 point1 = Point(0, 0)
 point2 = Point(1, 1)
