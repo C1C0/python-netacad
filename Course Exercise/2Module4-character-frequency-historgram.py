@@ -73,7 +73,8 @@ def histogramToString(histogram: dict) -> str:
     return output
 
 try:
-    stream = open('C:\\Users\\kpsko\\Documents\\School\\1sem\\Python\\Course Exercise\\streams\\2module4.txt', 'r')
+    fileName = input("Enter the file to analyze: ")
+    stream = open('C:\\Users\\kpsko\\Documents\\School\\1sem\\Python\\Course Exercise\\streams\\'+fileName, 'r')
     print(histogramToString(histogram(stream, True)))
 except OSError:
     print("File probably doesn't exist")
